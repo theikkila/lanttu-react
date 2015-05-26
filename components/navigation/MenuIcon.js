@@ -6,7 +6,7 @@ var MenuIcon = React.createClass({
     return(
       <li>
         <a href="/">
-          <img src="/assets/menuIcon.png" >
+          <img src="/assets/menuIcon.png" />
         </a>
       </li>
     );

@@ -1,17 +1,21 @@
 var React = require('react');
 
 var Hello = require('./Hello');
+var Navigation = require('./navigation/Navigation');
+
+
 
 var App = React.createClass({
-    render(){
+  render(){
+    var items=["Konpot", "Tissit"]
+    return (
 
-        return (
-
-            <div>
-                <Hello name="Matias" />
-            </div>
-            )
-    }
+      <div>
+          <Navigation items={items} />
+          <Hello name="Matias" />
+      </div>
+    );
+  }
 });
 
 module.exports = App;
