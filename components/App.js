@@ -1,16 +1,14 @@
 var React = require('react');
-
 var Hello = require('./Hello');
 var PageCalculator = require('./PageCalculator');
 var PageStore = require('../stores/PageStore');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var cs = require('../dispatcher/constants');
 
-
 function getPagesState () {
     return {
         allPages: PageStore.getAll()
-    }    
+    }
 }
 
 var App = React.createClass({
@@ -20,7 +18,7 @@ var App = React.createClass({
 	componentDidMount() {
         PageStore.addChangeListener(this.handleChange);
     },
-    componentWillUnmount() {  
+    componentWillUnmount() {
         PageStore.removeChangeListener(this.handleChange);
 	},
 	handleChange(pages){
@@ -38,13 +36,13 @@ var App = React.createClass({
     	});
         return (
 
-            <div>
-            	<button onClick={ this.createNewItem } >Paina</button><PageCalculator />
-                <Hello name="Matias" />
-                { rpages }
-                
-            </div>
-            )
+          <div>
+          	<button onClick={ this.createNewItem } >Paina</button><PageCalculator />
+              <Hello name="Matias" />
+              { rpages }
+
+          </div>
+          );
     }
 });
 
