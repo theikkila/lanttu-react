@@ -16,7 +16,9 @@ var Navigation = React.createClass({
 
   componentDidMount: function(){
     PageStore.addChangeListener(this.handleChange);
-    this.state.pages = this.getPagesState();
+    this.setState({
+      pages: this.getPagesState()
+    });
   },
 
   componentWillUnmount(){
