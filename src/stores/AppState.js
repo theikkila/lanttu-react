@@ -8,6 +8,7 @@ var _ = require('lodash');
 
 var _posts = []; // collection of post items
 var _pages = []; // collection of page items
+var _navigation = {items:[]}; // collection of nav items
 
 
 /**
@@ -17,6 +18,14 @@ var _pages = []; // collection of page items
 function createPost(post) {
   // Using the current timestamp in place of a real id.
   _posts.push(post);
+}
+
+/**
+ * Set navigation
+ * @param {object} Navi to be setted
+ */
+function setNavigation(navi) {
+  _navigation = navi;
 }
 
 
@@ -33,7 +42,13 @@ function createPage(page) {
 
 
 var AppState = assign({}, EventEmitter.prototype, {
-
+  /**
+   * Get the main navigation.
+   * @return {object}
+   */
+  getNavigation: function() {
+    return _navigation;
+  },
   /**
    * Get the entire collection of posts.
    * @return {object}
@@ -79,6 +94,10 @@ var AppState = assign({}, EventEmitter.prototype, {
         createPage(data);
         AppState.emitChange();
         break;
+      case cs.LOADNAVI:
+        setNavigation(data);
+        AppState.emitChange();
+        break;
 
       case cs.DESTROY:
         //destroy(data.slug);
@@ -104,6 +123,16 @@ request.get(cs.JOKELAN_JSON_API+'/posts')
        alert('Oh no! error ' + res.text);
      }
    });
+
+
+request.get(cs.JOKELAN_JSON_API + '/menus/2')
+.end(function(err, res){
+      if(err){
+        console.log('ERROR: ' + err);
+      }
+      setNavigation(res.body);
+      AppState.emitChange();
+    });
 
 
 
