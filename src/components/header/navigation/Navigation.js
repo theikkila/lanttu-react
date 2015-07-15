@@ -1,41 +1,33 @@
 var React = require('react');
-var PageStore = require('../../../stores/PageStore');
+var superagent = require('superagent');
+var cs = require('../../../dispatcher/constants');
 
 
 var Navigation = React.createClass({
 
-  getPagesState: function(){
-    return PageStore.getAll();
-  },
-
   getInitialState: function(){
     return {
-      pages: []
+      items: []
     };
   },
 
-  componentDidMount: function(){
-    PageStore.addChangeListener(this.handleChange);
-    this.setState({
-      pages: this.getPagesState()
+  componentWillMount: function(){
+    var self = this;
+
+    superagent.get(cs.JOKELAN_JSON_API + '/menus/2').end(function(err, res){
+      if(err){
+        console.log('ERROR: ' + err);
+      }
+      self.setState(res.body);
     });
   },
 
-  componentWillUnmount(){
-    PageStore.removeChangeListener(this.handleChange);
-  },
-
-  handleChange(pages){
-    this.setState(this.getPagesState());
-  },
-
   render: function(){
-
-    var menuItems = this.state.pages.map(function(page){
+    var menuItems = this.state.items.map(function(item){
       return(
-        <li key={page.id}>
-          <a href="/{item}">
-            {page.name}
+        <li key={item.id}>
+          <a href={"/#/page/" + item.title}>
+            {item.title}
           </a>
         </li>
       );
