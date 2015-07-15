@@ -25,8 +25,8 @@ var Navigation = React.createClass({
   render: function(){
     var menuItems = this.state.items.map(function(item){
       return(
-        <li key={item.id}>
-          <a href={"/#/page/" + item.title}>
+        <li key={item.ID}>
+          <a href={"/#/page/" + item.title} key={item.ID}>
             {item.title}
           </a>
         </li>
