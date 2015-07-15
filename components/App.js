@@ -1,16 +1,15 @@
 var React = require('react');
-
 var Hello = require('./Hello');
+var Header = require('./header/Header');
 var PageCalculator = require('./PageCalculator');
 var PageStore = require('../stores/PageStore');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var cs = require('../dispatcher/constants');
 
-
 function getPagesState () {
     return {
         allPages: PageStore.getAll()
-    }    
+    }
 }
 
 var App = React.createClass({
@@ -20,7 +19,7 @@ var App = React.createClass({
 	componentDidMount() {
         PageStore.addChangeListener(this.handleChange);
     },
-    componentWillUnmount() {  
+    componentWillUnmount() {
         PageStore.removeChangeListener(this.handleChange);
 	},
 	handleChange(pages){
@@ -32,20 +31,22 @@ var App = React.createClass({
         	data: { slug: "testi", name: 'Marco', content: "adasdasdadasdasd" } // example data
     	});
 	},
-    render(){
-    	var rpages = this.state.allPages.map(function (page) {
-    		return <li>{page.name} <pre>{page.slug}</pre></li>
-    	});
-        return (
+  render: function(){
+  	var rpages = this.state.allPages.map(function (page) {
+  		return <li>{page.name} <pre>{page.slug}</pre></li>
+  	});
 
-            <div>
-            	<button onClick={ this.createNewItem } >Paina</button><PageCalculator />
-                <Hello name="Matias" />
-                { rpages }
-                
-            </div>
-            )
-    }
+    return(
+      <body>
+        <Header />
+        <div>
+        	<button onClick={ this.createNewItem } >Paina</button><PageCalculator />
+            <Hello name="Matias" />
+            { rpages }
+        </div>
+      </body>
+    );
+  }
 });
 
 module.exports = App;
