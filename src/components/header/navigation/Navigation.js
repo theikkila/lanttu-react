@@ -26,10 +26,10 @@ var Navigation = React.createClass({
   render: function(){
     var self = this;
     var menuItems = this.state.nav.items.map(function(item){
-      var selected_class = item.ID == self.state.router.navid ? 'selected' : 'unselected';
+      var selected_class = item.object_id == self.state.router.navid ? 'selected' : 'unselected';
       return(
         <li key={item.ID} className={selected_class}>
-          <a href={"#/page/" + item.ID} key={item.ID}>
+          <a href={"#/" + item.object + "/" + item.object_id} key={item.ID}>
             {item.title}
           </a>
         </li>

@@ -23,6 +23,14 @@ request.get(cs.JOKELAN_JSON_API+'/posts')
       Posts.reset(res.body)
    });
 
+request.get(cs.JOKELAN_JSON_API+'/pages')
+.end(function(err, res){
+      if(err){
+        console.log('ERROR: ' + err);
+      }
+      Pages.reset(res.body)
+   });
+
 
 request.get(cs.JOKELAN_JSON_API + '/menus/2')
 .end(function(err, res){
