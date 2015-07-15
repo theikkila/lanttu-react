@@ -1,11 +1,11 @@
 var React = require('react');
-var PageStore = require('../../../stores/PageStore');
+var AppState = require('../../../stores/AppState');
 
 
 var Navigation = React.createClass({
 
   getPagesState: function(){
-    return PageStore.getAll();
+    return AppState.getAllPosts();
   },
 
   getInitialState: function(){
@@ -15,14 +15,14 @@ var Navigation = React.createClass({
   },
 
   componentDidMount: function(){
-    PageStore.addChangeListener(this.handleChange);
+    AppState.addChangeListener(this.handleChange);
     this.setState({
       pages: this.getPagesState()
     });
   },
 
   componentWillUnmount(){
-    PageStore.removeChangeListener(this.handleChange);
+    AppState.removeChangeListener(this.handleChange);
   },
 
   handleChange(pages){
@@ -33,7 +33,7 @@ var Navigation = React.createClass({
 
     var menuItems = this.state.pages.map(function(page){
       return(
-        <li key={page.id}>
+        <li key={page.ID}>
           <a href="/{item}">
             {page.name}
           </a>

@@ -4,35 +4,51 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var request = require('superagent');
+var _ = require('lodash');
 
-var _pages = [
-  {slug: "tsss", name:"Sampo", content:"sdasddasd"}
-]; // collection of page items
+var _posts = []; // collection of post items
+var _pages = []; // collection of page items
 
-//request.get('/')
 
 /**
  * Create a page item.
- * @param {string} text The content of the page
+ * @param {object} Post to be added
  */
-function create(slug, name, content) {
+function createPost(post) {
   // Using the current timestamp in place of a real id.
-  _pages.push({
-    slug: slug,
-    name: name,
-    content: content
-  })
+  _posts.push(post);
 }
 
-var PageStore = assign({}, EventEmitter.prototype, {
 
+/**
+ * Create a page item.
+ * @param {object} Page to be added
+ */
+function createPage(page) {
+  // Using the current timestamp in place of a real id.
+  _pages.push(page);
+}
+
+
+
+
+var AppState = assign({}, EventEmitter.prototype, {
+
+  /**
+   * Get the entire collection of posts.
+   * @return {object}
+   */
+  getAllPosts: function() {
+    return _posts;
+  },
   /**
    * Get the entire collection of pages.
    * @return {object}
    */
-  getAll: function() {
+  getAllPages: function() {
     return _pages;
   },
+
 
   emitChange: function() {
     this.emit(cs.CHANGE);
@@ -54,19 +70,19 @@ var PageStore = assign({}, EventEmitter.prototype, {
 
   dispatcherIndex: AppDispatcher.register(function(payload) {
     var data = payload.data;
-    
     switch(payload.type) {
-      case cs.CREATE:
-        var slug = data.slug.trim();
-        if (slug !== '') {
-          create(data.slug, data.name, data.content);
-          PageStore.emitChange();
-        }
+      case cs.CREATEPOST:
+        createPost(data);
+        AppState.emitChange();
+        break;
+      case cs.CREATEPAGE:
+        createPage(data);
+        AppState.emitChange();
         break;
 
       case cs.DESTROY:
         //destroy(data.slug);
-        PageStore.emitChange();
+        AppState.emitChange();
         break;
 
       // add more cases for other actionTypes, like page_UPDATE, etc.
@@ -77,4 +93,18 @@ var PageStore = assign({}, EventEmitter.prototype, {
 
 });
 
-module.exports = PageStore;
+
+// Dispatch ajax request
+request.get(cs.JOKELAN_JSON_API+'/posts')
+.end(function(err, res){
+     if (res.ok) {
+      _.map(res.body, createPost);
+      AppState.emitChange();
+     } else {
+       alert('Oh no! error ' + res.text);
+     }
+   });
+
+
+
+module.exports = AppState;

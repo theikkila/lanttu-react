@@ -1,12 +1,12 @@
 var React = require('react');
 var Header = require('./header/Header');
-var PageStore = require('../stores/PageStore');
+var AppState = require('../stores/AppState');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var cs = require('../dispatcher/constants');
 
 function getPagesState () {
     return {
-        allPages: PageStore.getAll()
+        allPosts: AppState.getAllPosts()
     }
 }
 
@@ -15,23 +15,27 @@ var App = React.createClass({
         return getPagesState();
     },
 	componentDidMount() {
-        PageStore.addChangeListener(this.handleChange);
+        AppState.addChangeListener(this.handleChange);
     },
     componentWillUnmount() {
-        PageStore.removeChangeListener(this.handleChange);
+        AppState.removeChangeListener(this.handleChange);
 	},
 	handleChange(pages){
+    console.log("steetet");
 		this.setState(getPagesState());
 	},
 	createNewItem() {
 		AppDispatcher.dispatch({
-        	type: cs.CREATE,
+        	type: cs.CREATEPOST,
         	data: { slug: "testi", name: 'Marco', content: "adasdasdadasdasd" } // example data
     	});
 	},
   render: function(){
-  	var rpages = this.state.allPages.map(function (page) {
-  		return <li>{page.name} <pre>{page.slug}</pre></li>
+  	var rpages = this.state.allPosts.map(function (page) {
+  		return <div>
+      <h1>{page.name}</h1> <pre>{page.slug}</pre>
+      <div dangerouslySetInnerHTML={{__html: page.content}}></div>
+      </div>
   	});
 
     return(
