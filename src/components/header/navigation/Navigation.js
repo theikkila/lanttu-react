@@ -1,25 +1,21 @@
 var React = require('react');
 var superagent = require('superagent');
+var AppState = require('../../../stores/AppState');
 var cs = require('../../../dispatcher/constants');
 
 
 var Navigation = React.createClass({
 
-  getInitialState: function(){
-    return {
-      items: []
-    };
+  getInitialState: AppState.getNavigation,
+  componentDidMount() {
+    AppState.addChangeListener(this.handleChange);
   },
-  componentWillMount: function(){
-    var self = this;
-    superagent.get(cs.JOKELAN_JSON_API + '/menus/2').end(function(err, res){
-      if(err){
-        console.log('ERROR: ' + err);
-      }
-      self.setState(res.body);
-    });
+  componentWillUnmount() {
+    AppState.removeChangeListener(this.handleChange);
   },
-
+  handleChange() {
+    this.setState(AppState.getNavigation());
+  },
   render: function(){
     var menuItems = this.state.items.map(function(item){
       return(
