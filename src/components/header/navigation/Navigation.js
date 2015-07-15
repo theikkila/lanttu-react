@@ -10,10 +10,8 @@ var Navigation = React.createClass({
       items: []
     };
   },
-
   componentWillMount: function(){
     var self = this;
-
     superagent.get(cs.JOKELAN_JSON_API + '/menus/2').end(function(err, res){
       if(err){
         console.log('ERROR: ' + err);
