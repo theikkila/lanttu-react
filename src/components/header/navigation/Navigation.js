@@ -1,11 +1,21 @@
 var React = require('react');
-var PageStore = require('../../../stores/PageStore');
+var superagent = require('superagent');
+var cs = require('../../../dispatcher/constants');
 
 
 var Navigation = React.createClass({
 
   getPagesState: function(){
-    return PageStore.getAll();
+    console.log(cs);
+    console.log(cs.JOKELAN_JSON_API + '/menus/2');
+
+    superagent.get(cs.JOKELAN_JSON_API + '/menus/2').end(function(err, res){
+      if(err){
+        console.log('ERROR: ' + err);
+      }
+      console.log(res);
+      return res;
+    });
   },
 
   getInitialState: function(){
@@ -15,14 +25,13 @@ var Navigation = React.createClass({
   },
 
   componentDidMount: function(){
-    PageStore.addChangeListener(this.handleChange);
     this.setState({
       pages: this.getPagesState()
     });
+    console.log(this.state.pages);
   },
 
   componentWillUnmount(){
-    PageStore.removeChangeListener(this.handleChange);
   },
 
   handleChange(pages){
