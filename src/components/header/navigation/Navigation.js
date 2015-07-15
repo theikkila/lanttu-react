@@ -4,22 +4,32 @@ var AppState = require('../../../stores/AppState');
 var cs = require('../../../dispatcher/constants');
 
 
+var stateGet = function () {
+  return {
+            nav: AppState.navigation.toJSON(),
+            router: AppState.router.toJSON()
+           };
+}
+
 var Navigation = React.createClass({
 
   getInitialState: function() {
-    return AppState.navigation.toJSON(); 
+    return stateGet();
   },
   componentDidMount() {
     AppState.navigation.on('change', this.handleChange);
+    AppState.router.on('change', this.handleChange);
   },
   handleChange() {
-    this.setState(AppState.navigation.toJSON());
+    this.setState(stateGet());
   },
   render: function(){
-    var menuItems = this.state.items.map(function(item){
+    var self = this;
+    var menuItems = this.state.nav.items.map(function(item){
+      var selected_class = item.ID == self.state.router.navid ? 'selected' : 'unselected';
       return(
-        <li key={item.ID}>
-          <a href={"/#/page/" + item.title} key={item.ID}>
+        <li key={item.ID} className={selected_class}>
+          <a href={"#/page/" + item.ID} key={item.ID}>
             {item.title}
           </a>
         </li>

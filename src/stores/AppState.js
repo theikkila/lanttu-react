@@ -2,12 +2,12 @@
 var cs = require('../dispatcher/constants');
 
 var request = require('superagent');
-
+var _ = require('lodash');
 var fluxStores = require("flux-stores");
 var Model = fluxStores.Model;
 var Collection = fluxStores.Collection;
 
-
+var Router = new Model({view: 'posts', navid: 24});
 var Navigation = new Model({items:[]});
 var Posts = new Collection([]);
 var Pages = new Collection([]);
@@ -37,5 +37,6 @@ request.get(cs.JOKELAN_JSON_API + '/menus/2')
 module.exports = {
   navigation: Navigation,
   posts: Posts,
-  pages: Pages
+  pages: Pages,
+  router: Router
 };
