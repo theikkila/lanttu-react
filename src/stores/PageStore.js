@@ -3,10 +3,13 @@ var cs = require('../dispatcher/constants');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
+var request = require('superagent');
 
 var _pages = [
   {slug: "tsss", name:"Sampo", content:"sdasddasd"}
 ]; // collection of page items
+
+//request.get('/')
 
 /**
  * Create a page item.
@@ -54,7 +57,7 @@ var PageStore = assign({}, EventEmitter.prototype, {
     
     switch(payload.type) {
       case cs.CREATE:
-        slug = data.slug.trim();
+        var slug = data.slug.trim();
         if (slug !== '') {
           create(data.slug, data.name, data.content);
           PageStore.emitChange();
