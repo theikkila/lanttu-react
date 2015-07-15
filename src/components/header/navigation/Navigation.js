@@ -6,15 +6,14 @@ var cs = require('../../../dispatcher/constants');
 
 var Navigation = React.createClass({
 
-  getInitialState: AppState.getNavigation,
-  componentDidMount() {
-    AppState.addChangeListener(this.handleChange);
+  getInitialState: function() {
+    return AppState.navigation.toJSON(); 
   },
-  componentWillUnmount() {
-    AppState.removeChangeListener(this.handleChange);
+  componentDidMount() {
+    AppState.navigation.on('change', this.handleChange);
   },
   handleChange() {
-    this.setState(AppState.getNavigation());
+    this.setState(AppState.navigation.toJSON());
   },
   render: function(){
     var menuItems = this.state.items.map(function(item){
