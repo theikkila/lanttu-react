@@ -1,7 +1,5 @@
 var React = require('react');
-var Hello = require('./Hello');
 var Header = require('./header/Header');
-var PageCalculator = require('./PageCalculator');
 var PageStore = require('../stores/PageStore');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var cs = require('../dispatcher/constants');
@@ -40,8 +38,7 @@ var App = React.createClass({
       <body>
         <Header />
         <div>
-        	<button onClick={ this.createNewItem } >Paina</button><PageCalculator />
-            <Hello name="Matias" />
+        	<button onClick={ this.createNewItem } >Paina</button>
             { rpages }
         </div>
       </body>
