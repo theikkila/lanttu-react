@@ -50,9 +50,6 @@ var App = React.createClass({
           <div className="row">
             <Navigation />
             <View mode={this.state.view} objectid={this.state.navid} />
-            <div>
-              <button onClick={ this.createNewItem } >Paina</button>
-            </div>
           </div>
         </div>
       </body>
