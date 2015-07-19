@@ -42,11 +42,15 @@ var App = React.createClass({
 
     return(
       <body>
-      <Header />
-      <View mode={this.state.view} objectid={this.state.navid} />
-      <div>
-      <button onClick={ this.createNewItem } >Paina</button>
-      </div>
+        <div id="main" className="container-fluid">
+          <div className="row">
+            <Header />
+            <View mode={this.state.view} objectid={this.state.navid} />
+            <div>
+              <button onClick={ this.createNewItem } >Paina</button>
+            </div>
+          </div>
+        </div>
       </body>
       );
   }

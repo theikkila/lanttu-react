@@ -26,7 +26,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "watchCSS": "watch-less -d resources/style/less/ -r resources/style/build/"
   },
   "author": "",
   "license": "ISC"

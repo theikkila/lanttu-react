@@ -5,8 +5,8 @@ var Header = React.createClass({
 
   render: function(){
     return(
-      <div id="header">
-      <h1>Header</h1>
+      <div id="header" className="col-xs-12 col-md-3">
+        <h1>Header</h1>
         <Navigation />
       </div>
     );
