@@ -16,7 +16,7 @@ var Posts = React.createClass({
 	render: function(){
 
 		var rposts = this.state.posts.map(function (post) {
-			return <Post post={post} />
+			return <Post key={post.ID} post={post} />
 		});
 
 		return <div className="posts content-container col-md-9 col-xs-12">{rposts}</div>

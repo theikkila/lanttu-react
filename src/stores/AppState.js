@@ -47,7 +47,6 @@ request.get(cs.JOKELAN_JSON_API + '/')
       if(err){
         console.log('ERROR: ' + err);
       }
-      console.log(res.body);
       App.set(res.body);
     });
 
