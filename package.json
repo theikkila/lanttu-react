@@ -22,6 +22,7 @@
     "babel-loader": "^5.3.2",
     "css-loader": "^0.15.5",
     "file-loader": "^0.8.4",
+    "image-loader": "0.0.1",
     "less": "^2.5.1",
     "less-loader": "^2.2.0",
     "node-libs-browser": "^0.5.2",
