@@ -30,6 +30,3 @@ node_modules
 
 .DS_Store
 compiled.js
-
-# compiled css dir
-resources/style/build/
