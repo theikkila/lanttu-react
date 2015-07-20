@@ -1,5 +1,6 @@
 var React = require('react');
 var Header = require('./header/Header');
+var Navigation = require('./navigation/Navigation');
 var View = require('./views/View');
 var AppState = require('../stores/AppState');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
@@ -41,13 +42,15 @@ var App = React.createClass({
 
 
     return(
-      <body>
-      <Header />
-      <View mode={this.state.view} objectid={this.state.navid} />
-      <div>
-      <button onClick={ this.createNewItem } >Paina</button>
-      </div>
-      </body>
+        <div className="container-fluid">
+          <div className="row-fluid">
+            <Header />
+          </div>
+          <div className="row-fluid">
+            <Navigation />
+            <View vmode={this.state.view} objectid={this.state.navid} />
+          </div>
+        </div>
       );
   }
 });

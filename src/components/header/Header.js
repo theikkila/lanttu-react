@@ -1,13 +1,21 @@
 var React  = require('react');
-var Navigation = require('./navigation/Navigation');
+var AppState = require('../../stores/AppState');
+
 
 var Header = React.createClass({
-
-  render: function(){
+  getInitialState () {
+    return AppState.app.toJSON();
+  },
+  componentDidMount () {
+    AppState.app.on('change', this.handleChange);
+  },
+  handleChange () {
+    this.setState(AppState.app.toJSON());
+  },
+  render (){
     return(
-      <div id="header">
-      <h1>Header</h1>
-        <Navigation />
+      <div id="header" className="col-xs-12">
+        <h1>{this.state.name} <small>{this.state.description}</small></h1>
       </div>
     );
   }

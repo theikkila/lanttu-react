@@ -1,7 +1,7 @@
 var React = require('react');
 var superagent = require('superagent');
-var AppState = require('../../../stores/AppState');
-var cs = require('../../../dispatcher/constants');
+var AppState = require('../../stores/AppState');
+var cs = require('../../dispatcher/constants');
 
 
 var stateGet = function () {
@@ -37,7 +37,7 @@ var Navigation = React.createClass({
     });
 
     return(
-      <nav className="main-nav">
+      <nav className="main-nav col-xs-12 col-md-3">
         <ul>
           {menuItems}
         </ul>
