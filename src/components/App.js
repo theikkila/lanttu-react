@@ -43,6 +43,7 @@ var App = React.createClass({
 
     return(
         <div className="container-fluid">
+        <div id="grain"></div>
           <div className="row-fluid">
             <Header />
           </div>

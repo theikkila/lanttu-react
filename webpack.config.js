@@ -30,6 +30,7 @@ module.exports = {
       test: /\.(woff|eot|ttf|svg|woff2)$/,
       loader: 'url?limit=100000'
     },
+    { test: /\.png$/, loader: "url-loader?limit=100000" },
     {
         test: /\.less$/,
         loader: "style!css!less"
