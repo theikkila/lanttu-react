@@ -19,7 +19,7 @@ var Posts = React.createClass({
 			return <Post key={post.ID} post={post} />
 		});
 
-		return <div className="posts content-container col-md-9 col-xs-12">{rposts}</div>
+		return <div className="posts content-container animated fadeIn col-md-9 col-xs-12">{rposts}</div>
 	}
 });
 
