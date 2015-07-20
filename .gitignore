@@ -33,3 +33,5 @@ compiled.js
 
 # compiled css dir
 resources/style/build/
+
+dist/
