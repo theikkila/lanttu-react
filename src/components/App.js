@@ -42,17 +42,15 @@ var App = React.createClass({
 
 
     return(
-      <body>
-        <div id="main" className="container-fluid">
-          <div className="row">
+        <div className="container-fluid">
+          <div className="row-fluid">
             <Header />
           </div>
-          <div className="row">
+          <div className="row-fluid">
             <Navigation />
-            <View mode={this.state.view} objectid={this.state.navid} />
+            <View vmode={this.state.view} objectid={this.state.navid} />
           </div>
         </div>
-      </body>
       );
   }
 });

@@ -8,6 +8,7 @@ var Model = fluxStores.Model;
 var Collection = fluxStores.Collection;
 
 var Router = new Model({view: 'posts', navid: 24});
+var App = new Model({name: "Joke-LAN S15", description: ""});
 var Navigation = new Model({items:[]});
 var Posts = new Collection([]);
 var Pages = new Collection([]);
@@ -41,10 +42,20 @@ request.get(cs.JOKELAN_JSON_API + '/menus/2')
     });
 
 
+request.get(cs.JOKELAN_JSON_API + '/')
+.end(function(err, res){
+      if(err){
+        console.log('ERROR: ' + err);
+      }
+      console.log(res.body);
+      App.set(res.body);
+    });
+
 
 module.exports = {
   navigation: Navigation,
   posts: Posts,
   pages: Pages,
-  router: Router
+  router: Router,
+  app: App
 };
