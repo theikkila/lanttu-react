@@ -12,7 +12,7 @@ var Page = React.createClass({
 	render: function(){
 		var obj = AppState.pages.findWhere({ID: parseInt(this.props.objectid)})
 		var page = obj ? obj.toJSON() : {title: "Loading...", content:"loading..."};
-		return <div className="page content-container col-md-9 col-xs-12">
+		return <div className="page content-container animated fadeIn col-md-9 col-xs-12">
 					<h1>{page.title}</h1>
 					<div dangerouslySetInnerHTML={{__html: page.content}}></div>
 				</div>
