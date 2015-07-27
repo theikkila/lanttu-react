@@ -13,18 +13,19 @@ var index = function(){
   AppState.router.set('navid', 24);
 };
 
-var typeroute = function (view, id) {
-  AppState.router.set({view: view});
-  AppState.router.set({navid: id});
+var typeroute = function (path) {
+  var parts = path.split('/');
+  console.log(parts);
+  AppState.router.set({view: parts[0]});
+  AppState.router.set({navid: parts[1]});
 };
 
 var routes = {
   '/': index,
-  '/:view/:id': typeroute
+  '/(.*)': typeroute,
 };
 
 var router = Router(routes);
-
 router.init();
 
 
@@ -39,7 +40,6 @@ var App = React.createClass({
     this.setState(AppState.router.toJSON());
   },
   render: function(){
-
 
     return(
         <div className="container-fluid">

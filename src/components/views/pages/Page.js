@@ -10,7 +10,7 @@ var Page = React.createClass({
 		});
 	},
 	render: function(){
-		var obj = AppState.pages.findWhere({ID: parseInt(this.props.objectid)})
+		var obj = AppState.pages.findWhere({slug: this.props.objectid})
 		var page = obj ? obj.toJSON() : {title: "Loading...", content:"loading..."};
 		return <div className="page content-container animated fadeIn col-md-9 col-xs-12">
 					<h1>{page.title}</h1>

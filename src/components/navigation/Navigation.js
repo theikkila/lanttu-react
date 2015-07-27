@@ -7,7 +7,8 @@ var cs = require('../../dispatcher/constants');
 var stateGet = function () {
   return {
             nav: AppState.navigation.toJSON(),
-            router: AppState.router.toJSON()
+            router: AppState.router.toJSON(),
+            app: AppState.app.toJSON()
            };
 }
 
@@ -19,6 +20,7 @@ var Navigation = React.createClass({
   componentDidMount() {
     AppState.navigation.on('change', this.handleChange);
     AppState.router.on('change', this.handleChange);
+    AppState.app.on('change', this.handleChange);
   },
   handleChange() {
     this.setState(stateGet());
@@ -26,10 +28,11 @@ var Navigation = React.createClass({
   render: function(){
     var self = this;
     var menuItems = this.state.nav.items.map(function(item){
-      var selected_class = item.object_id == self.state.router.navid ? 'selected' : 'unselected';
+      var slug = item.url.replace(self.state.app.URL, '').replace(/\//g, '');
+      var selected_class = slug == self.state.router.navid ? 'selected' : 'unselected';
       return(
         <li key={item.ID} className={selected_class}>
-          <a href={"#/" + item.object + "/" + item.object_id} key={item.ID}>
+          <a href={"#/" + item.object + "/" + slug} key={item.ID}>
             {item.title}
           </a>
         </li>

@@ -24,13 +24,22 @@ request.get(cs.JOKELAN_JSON_API+'/posts')
       Posts.reset(res.body)
    });
 
-request.get(cs.JOKELAN_JSON_API+'/pages')
-.end(function(err, res){
-      if(err){
-        console.log('ERROR: ' + err);
-      }
-      Pages.reset(res.body)
-   });
+function getPages(pagen, pages) {
+  request.get(cs.JOKELAN_JSON_API+'/pages?page=' + pagen)
+  .end(function(err, res){
+        if(err){
+          console.log('ERROR: ' + err);
+        }
+        var totalpages = res.headers['x-wp-totalpages'];
+        var cpages = pages.concat(res.body);
+        if (pagen >= totalpages) {
+          Pages.reset(cpages)
+        } else {
+          getPages(pagen+1, cpages)
+        }
+     });
+}
+getPages(1,[]);
 
 
 request.get(cs.JOKELAN_JSON_API + '/menus/2')
