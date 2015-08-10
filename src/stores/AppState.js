@@ -9,7 +9,7 @@ var Collection = fluxStores.Collection;
 
 var Router = new Model({view: 'posts', navid: 24});
 var App = new Model({name: "Joke-LAN S15", description: ""});
-var Navigation = new Model({items:[]});
+var Navigation = new Collection([]);
 var Posts = new Collection([]);
 var Pages = new Collection([]);
 
@@ -33,16 +33,16 @@ request.get(cs.JOKELAN_JSON_API+'/pages')
    });
 
 
-request.get(cs.JOKELAN_JSON_API + '/menus/2')
+request.get(cs.JOKELAN_JSON_API + '/menu')
 .end(function(err, res){
       if(err){
         console.log('ERROR: ' + err);
       }
-      Navigation.set(res.body);
+      Navigation.reset(res.body);
     });
 
 
-request.get(cs.JOKELAN_JSON_API + '/')
+request.get(cs.JOKELAN_JSON_API)
 .end(function(err, res){
       if(err){
         console.log('ERROR: ' + err);

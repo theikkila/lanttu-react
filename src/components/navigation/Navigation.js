@@ -17,7 +17,7 @@ var Navigation = React.createClass({
     return stateGet();
   },
   componentDidMount() {
-    AppState.navigation.on('change', this.handleChange);
+    AppState.navigation.on('add', this.handleChange);
     AppState.router.on('change', this.handleChange);
   },
   handleChange() {
@@ -25,11 +25,12 @@ var Navigation = React.createClass({
   },
   render: function(){
     var self = this;
-    var menuItems = this.state.nav.items.map(function(item){
+    console.log(self.state);
+    var menuItems = this.state.nav.map(function(item){
       var selected_class = item.object_id == self.state.router.navid ? 'selected' : 'unselected';
       return(
         <li key={item.ID} className={selected_class}>
-          <a href={"#/" + item.object + "/" + item.object_id} key={item.ID}>
+          <a href={"#/" + item.type + "/" + item.name} key={item.id}>
             {item.title}
           </a>
         </li>
