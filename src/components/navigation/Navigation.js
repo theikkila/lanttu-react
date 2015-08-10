@@ -56,7 +56,6 @@ var Navigation = React.createClass({
         <button className="menu-btn" onClick={this.handleNavToggle}>
           <img src="../src/style/images/joke-lan-logo-small.png" className="nav-logo"/>
           <div className="right">
-          Valikko
           <div className="mask-icon-white"></div>
           </div>
         </button>
