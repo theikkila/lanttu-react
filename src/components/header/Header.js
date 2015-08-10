@@ -16,7 +16,7 @@ var Header = React.createClass({
   render (){
     return(
       <div id="header" className="col-xs-12">
-        <img src="../src/style/images/joke-lan-logo.png" id="top-banner"/>
+        <img src={require("../../style/images/joke-lan-logo.png")} id="top-banner"/>
         <h1><small>{this.state.description}</small></h1>
       </div>
     );
