@@ -1,5 +1,6 @@
 var React  = require('react');
 var AppState = require('../../stores/AppState');
+var CONSTANTS = require('../../dispatcher/constants');
 
 
 var Header = React.createClass({
@@ -15,7 +16,8 @@ var Header = React.createClass({
   render (){
     return(
       <div id="header" className="col-xs-12">
-        <h1>{this.state.name} <small>{this.state.description}</small></h1>
+        <img src="../src/style/images/joke-lan-logo.png" id="top-banner"/>
+        <h1><small>{this.state.description}</small></h1>
       </div>
     );
   }

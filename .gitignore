@@ -35,3 +35,6 @@ compiled.js
 resources/style/build/
 
 dist/
+
+# tools
+squash.sh
