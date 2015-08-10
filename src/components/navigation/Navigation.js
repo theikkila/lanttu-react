@@ -25,7 +25,6 @@ var Navigation = React.createClass({
   },
   render: function(){
     var self = this;
-    console.log(self.state);
     var menuItems = this.state.nav.map(function(item){
       var selected_class = item.object_id == self.state.router.navid ? 'selected' : 'unselected';
       return(
