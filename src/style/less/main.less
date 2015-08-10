@@ -16,6 +16,9 @@ body{
 	padding: 0;
 	color: #DBDBDB;
 }
+.container-fluid {
+	padding: 0;
+}
 
 h1, h2, h3, h4 {
 	color: #EAEAEA;
@@ -45,8 +48,14 @@ h1, h2, h3, h4 {
 
 .content-container img {
 	vertical-align: middle;
-	width: 100%;
 	height: auto;
+}
+nav {
+	@media only screen and (min-width : 320px) and (max-width : 991px) {
+		padding: 0 !important;
+		margin: 0 !important;
+		margin-top: -18px !important;
+	}
 }
 // NAVIGATION
 nav ul {
@@ -85,6 +94,23 @@ nav li {
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 	border-left: solid 2px #545448;
+
+	@media only screen and (min-width : 320px) and (max-width : 991px) {
+		padding-left: 20px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-left: none;
+		background-color: rgba(0,0,0,0.3);
+		border-bottom: solid 1px #545448;
+
+		font-size: 1.3em;
+	}
+}
+
+#top-banner {
+	@media only screen and (min-width : 320px) and (max-width : 991px) {
+		display: none;
+	}
 }
 
 nav li.selected {
@@ -93,4 +119,78 @@ nav li.selected {
   margin-bottom: 15px;
   padding: 10px;
   background-color: rgba(29, 29, 29, 0.3);
+  @media only screen and (min-width : 320px) and (max-width : 991px) {
+		padding-left: 20px;
+  	border-left: 0;
+  	margin-top: 0;
+  	margin-bottom: 0;
+  	padding-top: 13px;
+  	padding-bottom: 13px;
+	background-color: rgba(29, 29, 29, 0.7);
+  }
+}
+
+.menu-hidden > ul > li {
+	@media only screen and (min-width : 320px) and (max-width : 991px) {
+		display: none;
+	}
+}
+.menu-hidden {
+	@media only screen and (min-width : 320px) and (max-width : 991px) {
+		width: 100%;
+		padding: 0;
+	}
+}
+
+.menu-btn {
+	border: none;
+	display: block;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	@media (min-width : 992px) {
+		background-color: #FFF;
+		display: none !important;
+	}
+	color: #FFF;
+	background-color: rgba(0,0,0,0.4);
+	width: 100%;
+	font-size: 2em;
+	padding-right: 10px;
+}
+.menu-btn > .right {
+	display: inline-block;
+	text-align: right;
+	float: right;
+}
+.menu-btn > .nav-logo {
+	display: inline-block;
+	text-align: left;
+	float: left;
+}
+
+.menu-btn:hover {
+	background-color: rgba(0,0,0,0.6);
+	text-decoration: none;
+	color: #DDD;
+}
+
+.menu-btn:focus {
+	background-color: rgba(0,0,0,0.6);
+	text-decoration: none;
+	color: #DDD;
+}
+
+
+.mask-icon-white {
+	background-repeat: no-repeat;
+	background-image: url(../../style/images/gasmask_w.png);
+	background-position: center;
+	width: 32px;
+	height: 43px;
+	display: inline-block;
+	top: 10px;
+	margin-top: -10px;
+	position: relative;
 }
