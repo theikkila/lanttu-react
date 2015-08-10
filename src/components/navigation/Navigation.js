@@ -27,7 +27,6 @@ var Navigation = React.createClass({
   handleNavToggle() {
     var state = this.state;
     state.navshow = !state.navshow;
-    console.log("moi", state);
     this.setState(state);
   },
   render: function(){
