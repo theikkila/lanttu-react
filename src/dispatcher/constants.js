@@ -3,5 +3,5 @@ module.exports = {
 	CREATEPOST: 'CREATEPOST',
 	CREATEPAGE: 'CREATEPAGE',
 	DESTROY: 'DESTROY',
-	JOKELAN_JSON_API: 'http://s15.joke-lan.net/wp-json'
+	JOKELAN_JSON_API: 'http://s15.joke-lan.net/api/v0'
 };
