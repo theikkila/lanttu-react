@@ -2,7 +2,6 @@
 var cs = require('../dispatcher/constants');
 
 var request = require('superagent');
-var _ = require('lodash');
 var fluxStores = require("flux-stores");
 var Model = fluxStores.Model;
 var Collection = fluxStores.Collection;

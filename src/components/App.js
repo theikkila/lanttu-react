@@ -3,7 +3,6 @@ var Header = require('./header/Header');
 var Navigation = require('./navigation/Navigation');
 var View = require('./views/View');
 var AppState = require('../stores/AppState');
-var AppDispatcher = require('../dispatcher/AppDispatcher');
 
 
 var Router = require('director').Router;
