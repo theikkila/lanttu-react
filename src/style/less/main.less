@@ -4,6 +4,17 @@ body{
 	font-family: Muli;
 }
 
+img {
+	max-width: 100%;
+	max-height: 100%;
+	border: 1px solid rgba(156, 158, 144, 0.63);
+}
+
+#header img, .menu-btn img {
+	border: none;
+}
+
+
 #main {
 	background-color: #000;
 	background: url('http://s15.joke-lan.net/bg1.jpg');
@@ -27,6 +38,16 @@ h1, h2, h3, h4 {
 
 #header h1 small {
 	color: rgb(210, 219, 195);
+}
+
+#header h1 {
+	margin: -1.5% 0 1em 3%;
+	display: block;
+	font-size: 1.5vw;
+
+	@media (max-width: 991px) {
+		display: none;
+	}
 }
 
 
@@ -108,8 +129,18 @@ nav li {
 }
 
 #top-banner {
+
+	width: 25%;
+
 	@media only screen and (min-width : 320px) and (max-width : 991px) {
 		display: none;
+	}
+}
+
+#site-header-date {
+	@media (min-width: 320px) and (max-width: 991px) {
+		line-height: 1.9em;
+		font-family: Ovo;
 	}
 }
 
@@ -146,7 +177,7 @@ nav li.selected {
 	border: none;
 	display: block;
 	width: 100%;
-	padding-top: 10px;
+	padding-top: 20px;
 	padding-bottom: 10px;
 	padding-left: 10px;
 	@media (min-width : 992px) {
@@ -193,4 +224,40 @@ nav li.selected {
 	top: 10px;
 	margin-top: -10px;
 	position: relative;
+}
+
+//CONTENT
+
+.post, .page {
+
+	text-align: justify;
+	padding-bottom: 1em;
+
+	@media (min-width: 992px) {
+		width: 800px;
+	}
+
+	@media (max-width: 991px) {
+		width: 96%;
+		margin: 2%;
+
+	}
+
+
+	ul {
+
+		li {
+			margin-bottom: -15px;
+		}
+
+	}
+
+}
+
+.post {
+
+	@media (min-width: 992px) {
+		border-bottom: 1px solid rgba(189, 216, 189, 0.48);
+	}
+
 }
