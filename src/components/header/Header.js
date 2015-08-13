@@ -17,7 +17,7 @@ var Header = React.createClass({
     return(
       <div id="header" className="col-xs-12">
         <img src={require("../../style/images/joke-lan-logo.png")} id="top-banner"/>
-        <h1><small>{this.state.description}</small></h1>
+        <h1>16.10.2015 - 18.10.2015</h1>
       </div>
     );
   }
