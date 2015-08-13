@@ -13,7 +13,12 @@ var Page = React.createClass({
 		var obj = AppState.pages.findWhere({name: this.props.objectid});
 
 		var page = obj ? obj.toJSON() : {title: "Loading...", content:"loading..."};
-        var content_with_br = page.content.replace(/(?:\r\n|\r|\n)/g, '<br />');
+		var content_with_br = page.content.split(/\r\n|\n|\r/).map(function (row) {
+			var trimmed = row.trim();
+			if (trimmed[trimmed.length-1] != '>') { row = row + "<br>";}
+			return row;
+		}).join('');
+
 		return <div className="page content-container animated fadeIn col-md-9 col-xs-12">
 					<h1>{page.title}</h1>
 					<div dangerouslySetInnerHTML={{__html: content_with_br}}></div>
