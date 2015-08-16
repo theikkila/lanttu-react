@@ -139,8 +139,11 @@ nav li {
 
 #site-header-date {
 	@media (min-width: 320px) and (max-width: 991px) {
-		line-height: 1.9em;
+		font-size: 0.8em;
 		font-family: Ovo;
+		float: left;
+		margin-top: 1%;
+		margin-left: 0.3em;
 	}
 }
 
@@ -173,6 +176,10 @@ nav li.selected {
 	}
 }
 
+.right{
+	float: right;
+}
+
 .menu-btn {
 	border: none;
 	display: block;
@@ -195,7 +202,9 @@ nav li.selected {
 	text-align: right;
 	float: right;
 }
-.menu-btn > .nav-logo {
+
+.nav-logo {
+	max-width: 33%;
 	display: inline-block;
 	text-align: left;
 	float: left;

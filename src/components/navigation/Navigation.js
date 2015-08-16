@@ -53,11 +53,13 @@ var Navigation = React.createClass({
           {menuItems}
         </ul>
         <button className="menu-btn" onClick={this.handleNavToggle}>
-          <img src={require("../../style/images/joke-lan-logo-small.png")} className="nav-logo"/>
-          <span id="site-header-date">16.10.2015 - 18.10.2015</span>
-          <div className="right">
-            <div className="mask-icon-white"></div>
-          </div>
+          <span class="img-vertical-center-helper">
+            <img src={require("../../style/images/joke-lan-logo-small.png")} className="nav-logo"/>
+            <span id="site-header-date">16.10.2015 - 18.10.2015</span>
+            <div className="right">
+              <div className="mask-icon-white right"></div>
+            </div>
+          </span>
         </button>
       </nav>
     );
