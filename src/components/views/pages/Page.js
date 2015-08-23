@@ -1,5 +1,6 @@
 var React  = require('react');
 var AppState = require('../../../stores/AppState');
+var Youtube = require('../Youtube');
 
 
 var Page = React.createClass({
@@ -13,7 +14,11 @@ var Page = React.createClass({
 		var obj = AppState.pages.findWhere({name: this.props.objectid});
 
 		var page = obj ? obj.toJSON() : {title: "Loading...", content:"loading..."};
-		var content_with_br = page.content.split(/\r\n|\n|\r/).map(function (row) {
+		console.log(page.content);
+		var content = page.content.replace(/(http(s?):\/\/)?(www.)?youtube.com\/watch\?v=(.*)/g, function (match, prot, ssl, www, video){
+			return React.renderToStaticMarkup(<Youtube url={video} />);
+		});
+		var content_with_br = content.split(/\r\n|\n|\r/).map(function (row) {
 			var trimmed = row.trim();
 			if (trimmed[trimmed.length-1] != '>') { row = row + "<br>";}
 			return row;
