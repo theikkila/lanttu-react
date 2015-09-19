@@ -1,4 +1,5 @@
 var React  = require('react');
+var Youtube = require('../Youtube');
 
 var Post = React.createClass({
 	render: function(){

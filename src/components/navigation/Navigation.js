@@ -2,7 +2,7 @@ var React = require('react');
 var superagent = require('superagent');
 var AppState = require('../../stores/AppState');
 var cs = require('../../dispatcher/constants');
-
+var Carousel = require('../../../node_modules/react-responsive-carousel/components/Carousel');
 
 var stateGet = function () {
   return {
@@ -47,21 +47,47 @@ var Navigation = React.createClass({
       nav_classes += " menu-hidden";
     }
 
+    var images = [
+      {'url': 'http://s15.joke-lan.net/wp-content/uploads/2015/07/Teho_logos_CMYK-01.jpg' },
+      {'url': 'http://s15.joke-lan.net/wp-content/uploads/2013/07/estrella.png'}
+    ];
+
+    var divStyle = { width: '400px'};
+
+    var sliderSettings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      SlidesToShow: 1,
+      SlidesToScroll: 1
+    };
+
     return(
-      <nav className={nav_classes}>
-        <ul>
-          {menuItems}
-        </ul>
-        <button className="menu-btn" onClick={this.handleNavToggle}>
-          <span className="img-vertical-center-helper">
-            <img src={require("../../style/images/joke-lan-logo-small.png")} className="nav-logo"/>
-            <span id="site-header-date">16.10.2015 - 18.10.2015</span>
-            <div className="right">
-              <div className="mask-icon-white right"></div>
-            </div>
-          </span>
-        </button>
-      </nav>
+      <div>
+        <nav className={nav_classes}>
+          <ul>
+            {menuItems}
+          </ul>
+          <button className="menu-btn" onClick={this.handleNavToggle}>
+            <span className="img-vertical-center-helper">
+              <img src={require("../../style/images/joke-lan-logo-small.png")} className="nav-logo"/>
+              <span id="site-header-date">16.10.2015 - 18.10.2015</span>
+              <div className="right">
+                <div className="mask-icon-white right"></div>
+              </div>
+            </span>
+          </button>
+        </nav>
+
+        <div style={divStyle}>
+          <h2>Karuselli!</h2>
+          <Carousel
+              type="slider"
+              items={ images }
+              showControls={true}
+              showStatus={true} />
+        </div>
+      </div>
     );
   }
 });
