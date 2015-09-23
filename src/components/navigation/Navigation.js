@@ -2,7 +2,9 @@ var React = require('react');
 var superagent = require('superagent');
 var AppState = require('../../stores/AppState');
 var cs = require('../../dispatcher/constants');
-var Carousel = require('../../../node_modules/react-responsive-carousel/components/Carousel');
+var Slider = require('react-slick');
+var Carousel = require('react-responsive-carousel').Carousel;
+
 
 var stateGet = function () {
   return {
@@ -42,7 +44,7 @@ var Navigation = React.createClass({
       );
     });
 
-    var nav_classes = "main-nav col-xs-12 col-md-3";
+    var nav_classes = "main-nav";
     if (!this.state.navshow) {
       nav_classes += " menu-hidden";
     }
@@ -52,8 +54,6 @@ var Navigation = React.createClass({
       {'url': 'http://s15.joke-lan.net/wp-content/uploads/2013/07/estrella.png'}
     ];
 
-    var divStyle = { width: '400px'};
-
     var sliderSettings = {
       dots: true,
       infinite: true,
@@ -62,8 +62,17 @@ var Navigation = React.createClass({
       SlidesToScroll: 1
     };
 
+    // <Slider {...sliderSettings}>
+    //     <div><h3>1</h3></div>
+    //     <div><h3>2</h3></div>
+    //     <div><h3>3</h3></div>
+    //     <div><h3>4</h3></div>
+    //     <div><h3>5</h3></div>
+    //     <div><h3>6</h3></div>
+    // </Slider>
+
     return(
-      <div>
+      <div className="col-xs-12 col-md-3">
         <nav className={nav_classes}>
           <ul>
             {menuItems}
@@ -79,14 +88,13 @@ var Navigation = React.createClass({
           </button>
         </nav>
 
-        <div style={divStyle}>
-          <h2>Karuselli!</h2>
-          <Carousel
-              type="slider"
-              items={ images }
-              showControls={true}
-              showStatus={true} />
-        </div>
+        <Carousel
+            className="carousel"
+            type="slider"
+            items={ images }
+            showControls={true}
+            showStatus={true} />
+
       </div>
     );
   }
