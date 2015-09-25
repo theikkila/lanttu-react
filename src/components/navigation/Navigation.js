@@ -2,6 +2,7 @@ var React = require('react');
 var superagent = require('superagent');
 var AppState = require('../../stores/AppState');
 var cs = require('../../dispatcher/constants');
+var Carousel = require('./carousel/Carousel');
 
 
 var stateGet = function () {
@@ -42,26 +43,30 @@ var Navigation = React.createClass({
       );
     });
 
-    var nav_classes = "main-nav col-xs-12 col-md-3";
+    var nav_classes = "main-nav";
     if (!this.state.navshow) {
       nav_classes += " menu-hidden";
     }
 
     return(
-      <nav className={nav_classes}>
-        <ul>
-          {menuItems}
-        </ul>
-        <button className="menu-btn" onClick={this.handleNavToggle}>
-          <span className="img-vertical-center-helper">
-            <img src={require("../../style/images/joke-lan-logo-small.png")} className="nav-logo"/>
-            <span id="site-header-date">16.10.2015 - 18.10.2015</span>
-            <div className="right">
-              <div className="mask-icon-white right"></div>
-            </div>
-          </span>
-        </button>
-      </nav>
+        <div className="col-xs-12 col-md-3 nav-container">
+            <nav className={nav_classes}>
+            <ul>
+              {menuItems}
+            </ul>
+            <button className="menu-btn" onClick={this.handleNavToggle}>
+              <span className="img-vertical-center-helper">
+                <img src={require("../../style/images/joke-lan-logo-small.png")} className="nav-logo"/>
+                <span id="site-header-date">16.10.2015 - 18.10.2015</span>
+                <div className="right">
+                  <div className="mask-icon-white right"></div>
+                </div>
+              </span>
+            </button>
+            </nav>
+
+            <Carousel />
+        </div>
     );
   }
 });
