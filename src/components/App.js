@@ -10,11 +10,13 @@ var Router = require('director').Router;
 var index = function(){
   AppState.router.set('view', 'posts');
   AppState.router.set('navid', 24);
+  ga('send', 'pageview', '/etusivu');
 };
 
 var typeroute = function (view, id) {
   AppState.router.set({view: view});
   AppState.router.set({navid: id});
+  ga('send', 'pageview', id);
 };
 
 var routes = {
